@@ -1,18 +1,36 @@
-
 const inquirer = require("inquirer");
 const fs = require("fs");
 const path = require("path");
 const generateMarkdown = require("./utils/generateMarkdown");
 
-const questions = [];
-var ans = prompt("1. What is your name?");
-questions.push(ans);
-ans = prompt("2. What is the name of the project?");
-questions.push(ans);
-ans = prompt("3. Name of your github repository?");
-questions.push(ans);
-ans = prompt("4. What is your email?");
-questions.push(ans);
+const questions = [
+    {
+        type: 'input',
+        name: 'title',
+        message: 'What is the project title',
+    },
+    {
+        type: 'list',
+        name: 'license',
+        message: 'What license would you like to use for this project?',
+        choices: ["MIT", "APACHE-2.0", "NONE"],
+    },
+    {
+        type: 'input',
+        name: 'desc',
+        message: 'Provide a short description explaining the what, why, and how of your project',
+    },
+    {
+        type: 'input',
+        name: 'install',
+        message: 'Provide a short procedure of installation',
+    }
+    {
+        type: 'input',
+        name: 'credits',
+        message: 'Who gets credit for this?',
+    }
+]
 
 function writeToFile(fileName, data) {
     const fs = require('fs');
